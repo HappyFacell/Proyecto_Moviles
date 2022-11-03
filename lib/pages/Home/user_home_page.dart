@@ -1,3 +1,7 @@
+//TODO: usar como base foto_Share e implementar firebase.
+//TODO usar paginas de order_details, details, crear pagina de orden actual.
+
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
