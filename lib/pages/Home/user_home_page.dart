@@ -2,9 +2,9 @@
 //TODO usar paginas de order_details, details, crear pagina de orden actual.
 
 import 'package:flutter/material.dart';
-import 'package:project/pages/Orders/Order_details_page.dart';
+import 'package:project/pages/Orders/ordenar.dart';
 import 'package:project/pages/actual_order/actual_order.dart';
-import 'package:project/pages/details/details-surface-de-diego.dart';
+import 'package:project/pages/details/details.dart';
 import 'package:project/pages/pass_order/pass_order.dart';
 
 class HomePage extends StatefulWidget {
