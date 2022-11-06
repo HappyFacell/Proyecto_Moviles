@@ -2,7 +2,7 @@
 //TODO usar paginas de order_details, details, crear pagina de orden actual.
 
 import 'package:flutter/material.dart';
-import 'package:project/pages/Orders/ordenar.dart';
+import 'package:project/pages/Orders/order.dart';
 import 'package:project/pages/actual_order/actual_order.dart';
 import 'package:project/pages/details/details.dart';
 import 'package:project/pages/pass_order/pass_order.dart';
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   final _pageList = [
     const ActualOrder(),
     const PassOrder(),
-    const Ordenar(),
+    const Order(),
     const Detalles()
   ];
 
