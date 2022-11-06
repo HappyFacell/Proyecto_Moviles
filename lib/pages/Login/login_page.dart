@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:fshare/auth/bloc/auth_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -20,26 +19,37 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Text(
-                "Sign In",
+                "Log In",
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            Image.asset(
-              "assets/icons/app_icon.png",
-              height: 120,
+            Container(
+              padding: const EdgeInsets.all(24.0),
+              child: TextField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'User Name',
+                ),
+              ),
             ),
-            SizedBox(height: 200),
-            MaterialButton(
-              child: Text("Iniciar como anonimo"),
-              color: Colors.grey,
-              onPressed: () {},
+            Container(
+              padding: const EdgeInsets.all(24.0),
+              child: TextField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+              ),
             ),
-            Text(
-              "Utiliza un red social",
+            TextButton(
+              onPressed: () {
+              },
+              child: const Text('Forgot Password',),
             ),
+            
             MaterialButton(
               child: Text("Iniciar con Google"),
               color: Colors.green,
