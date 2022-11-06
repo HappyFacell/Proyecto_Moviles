@@ -29,6 +29,7 @@ class _OrderState extends State<Order> {
             img: "assets/images/agua_horchata.png",
             description: "Agua de horchata",
           ),
+          ElevatedButton(onPressed: () {}, child: Text("Crear orden"))
         ],
       ),
     );

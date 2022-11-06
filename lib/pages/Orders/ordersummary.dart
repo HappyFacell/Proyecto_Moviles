@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/pages/Orders/widgets/itemcard.dart';
+import 'package:project/pages/Orders/widgets/orderitemcard.dart';
 
 class OrderSummary extends StatefulWidget {
   const OrderSummary({super.key});
@@ -17,16 +18,13 @@ class _OrderSummaryState extends State<OrderSummary> {
       ),
       body: ListView(
         children: [
-          ItemCard(
-            img: "assets/images/taco_pastor.jpg",
+          OrderItemCard(
             description: "Taco de pastor",
           ),
-          ItemCard(
-            img: "assets/images/orden_pastor.jpg",
+          OrderItemCard(
             description: "Orden de pastor",
           ),
-          ItemCard(
-            img: "assets/images/agua_horchata.png",
+          OrderItemCard(
             description: "Agua de horchata",
           ),
           Container(
@@ -35,11 +33,11 @@ class _OrderSummaryState extends State<OrderSummary> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text("Costo total:"),
-                Text("300"),
+                Text("150"),
               ],
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: Text("Pagar"))
+          ElevatedButton(onPressed: () {}, child: Text("Confirmar pago"))
         ],
       ),
     );
