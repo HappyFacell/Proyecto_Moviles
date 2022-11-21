@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/pages/Orders/ordersummary.dart';
 import 'package:project/pages/Orders/widgets/itemcard.dart';
 
 class Order extends StatefulWidget {
@@ -12,24 +13,30 @@ class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Personalizar orden"),
-      ),
       body: ListView(
         children: [
-          ItemCard(
+          const ItemCard(
             img: "assets/images/taco_pastor.jpg",
             description: "Taco de pastor",
           ),
-          ItemCard(
+          const ItemCard(
             img: "assets/images/orden_pastor.jpg",
             description: "Orden de pastor",
           ),
-          ItemCard(
+          const ItemCard(
             img: "assets/images/agua_horchata.png",
             description: "Agua de horchata",
           ),
-          ElevatedButton(onPressed: () {}, child: Text("Crear orden"))
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OrderSummary(),
+                  ),
+                );
+              },
+              child: const Text("Crear orden"))
         ],
       ),
     );
