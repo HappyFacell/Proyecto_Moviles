@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   final _pageNameList = [
     "Orden actual",
     "Ordenes pasadas",
-    "Ordenar",
+    "Personalizar orden",
     "Detalle de tienda"
   ];
 
