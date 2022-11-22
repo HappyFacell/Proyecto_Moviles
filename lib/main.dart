@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
           } else if (state is UnAuthState ||
               state is AuthErrorState ||
               state is SignOutSuccessState) {
-            return LoginPage();
+            return const LoginPage();
           }
-          return Center(
+          return const Center(
             child: LoginPage(),
           );
         },
