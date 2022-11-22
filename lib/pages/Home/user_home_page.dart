@@ -35,7 +35,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pageNameList[_currentpage]),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(_pageNameList[_currentpage]),
+            IconButton(
+              onPressed: () {
+                // BlocProvider.of<AuthBloc>(context)
+                //               .add(SignOutEvent());
+              },
+              icon: const Icon(Icons.logout),
+            )
+          ],
+        ),
         backgroundColor: Colors.brown[700],
       ),
       body: IndexedStack(
