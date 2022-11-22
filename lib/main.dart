@@ -5,44 +5,31 @@ import 'package:project/pages/Auth/bloc/auth_bloc.dart';
 import 'package:project/pages/Home/user_home_page.dart';
 import 'pages/Login/login_page.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AuthBloc(),
-        )
-      ],
-      child: const MyApp(),
-    ),
-  );
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
-      home: BlocConsumer<AuthBloc, AuthState>(
-        builder: (context, state) {
-          if (state is AuthSuccessState) {
-            return const HomePage();
-          } else if (state is UnAuthState ||
-              state is AuthErrorState ||
-              state is SignOutSuccessState) {
-            return const LoginPage();
-          }
-          return const Center(
-            child: LoginPage(),
-          );
-        },
-        listener: (context, state) {},
-      ),
+      // home: BlocConsumer<AuthBloc, AuthState>(
+      //   builder: (context, state) {
+      //     if (state is AuthSuccessState) {
+      //       return const HomePage();
+      //     } else if (state is UnAuthState ||
+      //         state is AuthErrorState ||
+      //         state is SignOutSuccessState) {
+      //       return const LoginPage();
+      //     }
+      //     return const Center(
+      //       child: LoginPage(),
+      //     );
+      //   },
+      //   listener: (context, state) {},
+      // ),
+      home: HomePage(),
     );
   }
 }

@@ -43,8 +43,8 @@ class _HomePageState extends State<HomePage> {
             Text(_pageNameList[_currentpage]),
             IconButton(
               onPressed: () {
-                BlocProvider.of<AuthBloc>(context)
-                              .add(SignOutEvent());
+                // BlocProvider.of<AuthBloc>(context)
+                //               .add(SignOutEvent());
               },
               icon: const Icon(Icons.logout),
             )

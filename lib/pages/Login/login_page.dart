@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   FontAwesomeIcons.google,
                 ),
                 onPressed: () {
-                  BlocProvider.of<AuthBloc>(context).add(GoogleAuthEvent());
+                  // BlocProvider.of<AuthBloc>(context).add(GoogleAuthEvent());
                 },
                 style: ElevatedButton.styleFrom(
                     foregroundColor: const Color.fromARGB(255, 0, 0, 0),
