@@ -2,8 +2,6 @@
 //TODO usar paginas de order_details, details, crear pagina de orden actual.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/pages/Auth/bloc/auth_bloc.dart';
 import 'package:project/pages/Orders/order.dart';
 import 'package:project/pages/actual_order/actual_order.dart';
 import 'package:project/pages/details/details.dart';
