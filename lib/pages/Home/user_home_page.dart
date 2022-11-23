@@ -40,8 +40,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(_pageNameList[_currentpage]),
             IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.logout),
+              onPressed: () {
+                // BlocProvider.of<AuthBloc>(context)
+                //               .add(SignOutEvent());
+              },
+              icon: const Icon(Icons.logout),
             )
           ],
         ),
