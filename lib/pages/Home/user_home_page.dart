@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        backgroundColor: Colors.brown[700],
+        backgroundColor: Color.fromARGB(255, 164, 59, 27),
       ),
       body: IndexedStack(
         index: _currentpage,
@@ -64,12 +64,17 @@ class _HomePageState extends State<HomePage> {
             },
           );
         },
-        selectedItemColor: Colors.brown,
-        backgroundColor: Colors.yellow[100],
+        selectedItemColor: Color.fromARGB(255, 139, 137, 136),
+        unselectedItemColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 164, 59, 27),
         items: [
           BottomNavigationBarItem(
             label: _pageNameList[0],
-            icon: const Icon(Icons.view_carousel),
+            icon: Image.asset(
+              'assets/images/paper-plane.png',
+              height: 30,
+              color: Colors.white,
+            ),
           ),
           BottomNavigationBarItem(
             label: _pageNameList[1],
@@ -77,7 +82,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             label: _pageNameList[2],
-            icon: const Icon(Icons.photo_camera),
+            icon: const Icon(Icons.edit_note),
           ),
           BottomNavigationBarItem(
             label: _pageNameList[3],
