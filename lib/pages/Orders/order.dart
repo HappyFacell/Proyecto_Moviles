@@ -36,6 +36,9 @@ class _OrderState extends State<Order> {
                   ),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
               child: const Text("Crear orden"))
         ],
       ),
