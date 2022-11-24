@@ -5,8 +5,6 @@ class PassOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("Ordenes pasadas"),
-    );
+    return const Text("Ordenes pasadas");
   }
 }

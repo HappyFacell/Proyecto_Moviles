@@ -24,7 +24,7 @@ class _ItemCardState extends State<ItemCard> {
           ),
           Text(
             widget.description,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
             ),
           ),
@@ -38,7 +38,7 @@ class _ItemCardState extends State<ItemCard> {
                   size: 30,
                 ),
               ),
-              Text("5"),
+              const Text("5"),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(
