@@ -44,7 +44,7 @@ class ReporsitoryAuth {
     if (!userDoc.exists) {
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
         'uid': uid,
-        'user-favorites': [],
+        'user-orders': [],
       });
     } else {
       print('user already exists');
