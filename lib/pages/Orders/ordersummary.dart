@@ -14,6 +14,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Resumen de Orden"),
+        backgroundColor: const Color.fromARGB(255, 164, 59, 27),
       ),
       body: ListView(
         children: [
@@ -36,7 +37,11 @@ class _OrderSummaryState extends State<OrderSummary> {
               ],
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: const Text("Confirmar pago"))
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+            child: const Text("Confirmar pago"),
+          )
         ],
       ),
     );
