@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        backgroundColor: Color.fromARGB(255, 164, 59, 27),
+        backgroundColor: const Color.fromARGB(255, 164, 59, 27),
       ),
       body: IndexedStack(
         index: _currentpage,
@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage> {
             },
           );
         },
-        selectedItemColor: Color.fromARGB(255, 139, 137, 136),
+        selectedItemColor: const Color.fromARGB(255, 139, 137, 136),
         unselectedItemColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 164, 59, 27),
+        backgroundColor: const Color.fromARGB(255, 164, 59, 27),
         items: [
           BottomNavigationBarItem(
             label: _pageNameList[0],
