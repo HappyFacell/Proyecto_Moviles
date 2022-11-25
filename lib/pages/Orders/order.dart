@@ -22,10 +22,12 @@ class _OrderState extends State<Order> {
           const ItemCard(
             img: "assets/images/orden_pastor.jpg",
             description: "Orden de pastor",
+            precio: 110,
           ),
           const ItemCard(
             img: "assets/images/agua_horchata.png",
             description: "Agua de horchata",
+            precio: 15,
           ),
           ElevatedButton(
               onPressed: () {
