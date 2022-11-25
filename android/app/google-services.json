@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "816536906741",
+    "project_id": "proyectotaqueria-1d251",
+    "storage_bucket": "proyectotaqueria-1d251.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816536906741:android:30020e8d3643b00cb38ebc",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816536906741-hkgrj5un8lio4i6e9p3dbgelcosdsokf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project",
+            "certificate_hash": "3522b113c630ea9651499ac02b8bd7a06a9ceb07"
+          }
+        },
+        {
+          "client_id": "816536906741-3qs1eqhj12ua7jvg6dtcs7hlj6q2a1p4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOEr9wathyWoDeFKjzyoxt1AR0wBOvoeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816536906741-3qs1eqhj12ua7jvg6dtcs7hlj6q2a1p4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

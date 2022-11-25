@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project/pages/Auth/bloc/auth_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -57,12 +59,12 @@ class _LoginPageState extends State<LoginPage> {
                   FontAwesomeIcons.google,
                 ),
                 onPressed: () {
-                  // BlocProvider.of<AuthBloc>(context).add(GoogleAuthEvent());
+                  BlocProvider.of<AuthBloc>(context).add(GoogleAuthEvent());
                 },
                 style: ElevatedButton.styleFrom(
                     foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                     minimumSize: const Size.fromHeight(50),
-                    backgroundColor: const Color.fromARGB(186, 240, 99, 99),
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(1.0),
                     )),

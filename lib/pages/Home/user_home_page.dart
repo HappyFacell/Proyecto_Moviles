@@ -2,6 +2,8 @@
 //TODO usar paginas de order_details, details, crear pagina de orden actual.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/pages/Auth/bloc/auth_bloc.dart';
 import 'package:project/pages/Orders/order.dart';
 import 'package:project/pages/actual_order/actual_order.dart';
 import 'package:project/pages/details/details.dart';
@@ -41,14 +43,14 @@ class _HomePageState extends State<HomePage> {
             Text(_pageNameList[_currentpage]),
             IconButton(
               onPressed: () {
-                // BlocProvider.of<AuthBloc>(context)
-                //               .add(SignOutEvent());
+                BlocProvider.of<AuthBloc>(context)
+                              .add(SignOutEvent());
               },
               icon: const Icon(Icons.logout),
             )
           ],
         ),
-        backgroundColor: Color.fromARGB(255, 164, 59, 27),
+        backgroundColor: const Color.fromARGB(255, 164, 59, 27),
       ),
       body: IndexedStack(
         index: _currentpage,
@@ -64,9 +66,9 @@ class _HomePageState extends State<HomePage> {
             },
           );
         },
-        selectedItemColor: Color.fromARGB(255, 139, 137, 136),
+        selectedItemColor: const Color.fromARGB(255, 139, 137, 136),
         unselectedItemColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 164, 59, 27),
+        backgroundColor: const Color.fromARGB(255, 164, 59, 27),
         items: [
           BottomNavigationBarItem(
             label: _pageNameList[0],

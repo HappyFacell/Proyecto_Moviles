@@ -24,7 +24,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
             children: [
               Text(
                 widget.description,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
@@ -33,9 +33,9 @@ class _OrderItemCardState extends State<OrderItemCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Total:"),
-              Text("5"),
-              Text("Costo:"),
+              const Text("Total:"),
+              const Text("5"),
+              const Text("Costo:"),
               Text("${widget.cost}")
             ],
           ),
