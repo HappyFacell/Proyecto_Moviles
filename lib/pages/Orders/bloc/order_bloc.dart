@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:project/pages/Orders/bloc/order_repository.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';
@@ -16,6 +17,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 FutureOr<void> _createOrder(event, emit) async {
   try {
     print("Hola, voy a crear la orden");
+    OrderRepository().createUserOrderCollectionFirebase();
     emit(OrderCreatedSuccesfullyState());
   } catch (e) {
     emit(OrderCreationFailedState());
