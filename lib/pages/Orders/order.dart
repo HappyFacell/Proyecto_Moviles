@@ -29,6 +29,21 @@ class _OrderState extends State<Order> {
             description: "Agua de horchata",
             precio: 15,
           ),
+          const ItemCard(
+            img: "assets/images/agua_horchata.png",
+            description: "Combinada de Harina",
+            precio: 15,
+          ),          
+          const ItemCard(
+            img: "assets/images/agua_horchata.png",
+            description: "Combinada de Maiz",
+            precio: 15,
+          ),
+          const ItemCard(
+            img: "assets/images/agua_horchata.png",
+            description: "Refresco",
+            precio: 15,
+          ),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(

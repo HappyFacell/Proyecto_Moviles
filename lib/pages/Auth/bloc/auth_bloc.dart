@@ -1,11 +1,8 @@
 import 'dart:async';
 
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/Auth/Auth_repository.dart';
-
-
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -35,8 +32,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> _authUser(event, emit) async {
     try {
-      await _userAuthRepository.signInWithGoogle();
-      emit(AuthSuccessState());
+      //await _userAuthRepository.signInWithGoogle();
+      //emit(AuthSuccessState());
+      emit(TakerAuthSuccessState());
     } catch (e) {
       emit(AuthErrorState());
     }

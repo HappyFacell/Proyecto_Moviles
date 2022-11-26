@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/Orders/widgets/orderitemcard.dart';
+import 'package:project/pages/Orders/bloc/order_bloc.dart';
+import 'package:project/pages/Auth/bloc/auth_bloc.dart';
 
 class OrderSummary extends StatefulWidget {
   const OrderSummary({super.key});
@@ -37,13 +40,35 @@ class _OrderSummaryState extends State<OrderSummary> {
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-            child: const Text("Confirmar pago"),
+          BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              if (state is TakerAuthSuccessState) {
+                return ElevatedButton(
+                  onPressed: () {
+                    print("he presionado el boton");
+                    BlocProvider.of<OrderBloc>(context).add(CloseOrderEvent());
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text("Confirmar pago"),
+                );
+              }
+              return ElevatedButton(
+                  onPressed: () {
+                    print("he presionado el boton");
+                    BlocProvider.of<OrderBloc>(context).add(CreateOrderEvent());
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text("Confirmar orden"),
+                );
+            },
           )
         ],
       ),
     );
   }
 }
+
+

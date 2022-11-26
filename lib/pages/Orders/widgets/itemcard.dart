@@ -27,13 +27,13 @@ class _ItemCardState extends State<ItemCard> {
           ),
           Text(
             widget.description,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
             ),
           ),
           Text(
             'Precio: \$${widget.precio}',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
             ),
           ),

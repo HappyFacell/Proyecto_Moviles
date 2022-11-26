@@ -11,6 +11,8 @@ class AuthInitial extends AuthState {}
 
 class AuthSuccessState extends AuthState {}
 
+class TakerAuthSuccessState extends AuthState {}
+
 class UnAuthState extends AuthState {}
 
 class SignOutSuccessState extends AuthState {}

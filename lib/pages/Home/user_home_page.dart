@@ -7,7 +7,7 @@ import 'package:project/pages/Auth/bloc/auth_bloc.dart';
 import 'package:project/pages/Orders/order.dart';
 import 'package:project/pages/actual_order/actual_order.dart';
 import 'package:project/pages/details/details.dart';
-import 'package:project/pages/pass_order/pass_order.dart';
+import 'package:project/pages/past_orders/past_orders.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   final _pageNameList = [
     "Orden actual",
     "Ordenes pasadas",
-    "Personalizar orden",
+    "Personalizar orden actual",
     "Detalle de tienda"
   ];
 
