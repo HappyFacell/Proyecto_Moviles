@@ -33,19 +33,18 @@ class ReporsitoryAuth {
     //extract token
     User user = authResult.user!;
     final firebaseToken = await user.getIdToken();
-
-    await _createUserCollectionFirebase(_auth.currentUser!.uid);
+    await _createUserCollectionFirebase(_auth.currentUser!);
   }
 
-  Future<void> _createUserCollectionFirebase(String uid) async {
+  Future<void> _createUserCollectionFirebase(dynamic doc) async {
     var userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+        await FirebaseFirestore.instance.collection('users').doc(doc.uid).get();
 
     if (!userDoc.exists) {
-      await FirebaseFirestore.instance.collection('users').doc(uid).set({
-        'uid': uid,
-        'user-orders': [],
-        'is_taker':false
+      await FirebaseFirestore.instance.collection('users').doc(doc.uid).set({
+        'uid': doc.uid,
+        'is_taker':false,
+        'name': doc.displayName,
       });
     } else {
       print('user already exists');
