@@ -11,6 +11,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderBloc() : super(OrderInitialState()) {
     on<CreateOrderEvent>(_createOrder);
     on<CloseOrderEvent>(_closeOrder);
+    on<GetOrderEvent>(_getOrder);
   }
 }
 
@@ -30,5 +31,15 @@ FutureOr<void> _closeOrder(event, emit) async {
     emit(OrderCreatedSuccesfullyState());
   } catch (e) {
     emit(OrderCreationFailedState());
+  }
+}
+
+FutureOr<void> _getOrder(event, emit) async {
+  try {
+    print("Hola voy a obtener la orden");
+    OrderRepository().getOder();
+    emit(GetOrderSuccesfullyState());
+  } catch (e) {
+    emit(GetOrderFailedState());
   }
 }
