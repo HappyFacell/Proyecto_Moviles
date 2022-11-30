@@ -16,3 +16,7 @@ class OrderCreatedSuccesfullyState extends OrderState {}
 class OrderFinishedState extends OrderState {}
 
 class OrderCreationFailedState extends OrderState {}
+
+class GetOrderFailedState extends OrderState {}
+
+class GetOrderSuccesfullyState extends OrderState {}

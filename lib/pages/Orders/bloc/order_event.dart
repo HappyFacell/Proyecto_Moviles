@@ -10,3 +10,5 @@ abstract class OrderEvent extends Equatable {
 class CreateOrderEvent extends OrderEvent {}
 
 class CloseOrderEvent extends OrderEvent {}
+
+class GetOrderEvent extends OrderEvent {}
