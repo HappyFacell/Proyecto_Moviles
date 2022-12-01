@@ -19,10 +19,26 @@ class PassOrder extends StatelessWidget {
         if (state is GetOrderSuccesfullyState) {
           print('Estado correcto');
           print(_userOrder);
-          return Column(
+          return ListView(
             children: [
-              Text(
-                  '${_userOrder[0].entries.first.key}: ${_userOrder[0].entries.first.value}'),
+              for (var element in _userOrder)
+                Column(
+                  children: [
+                    for (var x in element.keys)
+                      Row(
+                        children: [
+                          Text('$x: ${element[x]}'),
+                        ],
+                      ),
+                    const Divider(
+                      height: 30,
+                      thickness: 1,
+                      indent: 10,
+                      endIndent: 10,
+                      color: Colors.black87,
+                    )
+                  ],
+                ),
             ],
           );
         }

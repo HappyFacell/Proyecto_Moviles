@@ -41,7 +41,10 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_pageNameList[_currentpage]),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(_pageNameList[_currentpage]),
+            ),
             IconButton(
               onPressed: () {
                 BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
