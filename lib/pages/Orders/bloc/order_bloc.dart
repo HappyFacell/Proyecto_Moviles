@@ -37,8 +37,9 @@ FutureOr<void> _closeOrder(event, emit) async {
 FutureOr<void> _getOrder(event, emit) async {
   try {
     print("Hola voy a obtener la orden");
-    OrderRepository().getOder();
-    emit(GetOrderSuccesfullyState());
+    var order = await OrderRepository().getpastOder();
+    // print(order);
+    emit(GetOrderSuccesfullyState(userOrder: order));
   } catch (e) {
     emit(GetOrderFailedState());
   }
