@@ -59,12 +59,6 @@ class _OrderSummaryState extends State<OrderSummary> {
                 onPressed: () {
                   print("he presionado el boton");
                   BlocProvider.of<OrderBloc>(context).add(CreateOrderEvent());
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                  );
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
                 child: const Text("Confirmar orden"),

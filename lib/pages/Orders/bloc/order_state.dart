@@ -17,12 +17,23 @@ class OrderFinishedState extends OrderState {}
 
 class OrderCreationFailedState extends OrderState {}
 
-class GetOrderFailedState extends OrderState {}
+class GetPastOrderFailedState extends OrderState {}
 
-class GetOrderSuccesfullyState extends OrderState {
+class GetActualOrderFailedState extends OrderState {}
+
+class GetActualOrderSuccesfullyState extends OrderState {
   final List<Map<String, dynamic>> userOrder;
 
-  const GetOrderSuccesfullyState({required this.userOrder});
+  const GetActualOrderSuccesfullyState({required this.userOrder});
+
+  @override
+  List<Object> get props => [userOrder];
+}
+
+class GetPastOrderSuccesfullyState extends OrderState {
+  final List<Map<String, dynamic>> userOrder;
+
+  const GetPastOrderSuccesfullyState({required this.userOrder});
 
   @override
   List<Object> get props => [userOrder];
