@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/Orders/bloc/order_bloc.dart';
 
-class PassOrder extends StatelessWidget {
-  PassOrder({super.key});
+class PastOrder extends StatelessWidget {
+  PastOrder({super.key});
 
   late List<Map<String, dynamic>> _userOrder;
 
@@ -11,12 +11,12 @@ class PassOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
-        if (state is GetOrderSuccesfullyState) {
+        if (state is GetPastOrderSuccesfullyState) {
           _userOrder = state.userOrder;
         }
       },
       builder: (context, state) {
-        if (state is GetOrderSuccesfullyState) {
+        if (state is GetPastOrderSuccesfullyState && _userOrder.isNotEmpty) {
           print('Estado correcto');
           print(_userOrder);
           return ListView(
@@ -41,9 +41,17 @@ class PassOrder extends StatelessWidget {
                 ),
             ],
           );
+        } else if (state is GetPastOrderFailedState) {
+          return Column(
+            children: const [
+              Text('Ordenes pasadas'),
+            ],
+          );
         }
         return Column(
-          children: [Text('Ordenes pasadas')],
+          children: const [
+            Text('Ordenes pasadas'),
+          ],
         );
       },
     );

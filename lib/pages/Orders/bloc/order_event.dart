@@ -11,4 +11,6 @@ class CreateOrderEvent extends OrderEvent {}
 
 class CloseOrderEvent extends OrderEvent {}
 
-class GetOrderEvent extends OrderEvent {}
+class GetActualOrderEvent extends OrderEvent {}
+
+class GetPastOrderEvent extends OrderEvent {}

@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final _pageList = [
-    const ActualOrder(),
-    PassOrder(),
+    ActualOrder(),
+    PastOrder(),
     const Order(),
     const Detalles()
   ];
@@ -68,8 +68,11 @@ class _HomePageState extends State<HomePage> {
               _currentpage = value;
             },
           );
-          if (_currentpage == 1) {
-            BlocProvider.of<OrderBloc>(context).add(GetOrderEvent());
+          if (_currentpage == 0) {
+            BlocProvider.of<OrderBloc>(context).add(GetActualOrderEvent());
+          }
+          else if (_currentpage == 1) {
+            BlocProvider.of<OrderBloc>(context).add(GetPastOrderEvent());
           }
         },
         selectedItemColor: const Color.fromARGB(255, 139, 137, 136),
