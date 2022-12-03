@@ -6,12 +6,10 @@ import '../bloc/order_bloc.dart';
 class OrderItemCard extends StatefulWidget {
   final String description;
   final double cost;
-  final Function test;
   const OrderItemCard({
     super.key,
     this.description = "Taco de pastor",
     this.cost = 10,
-    this.test
   });
 
   @override

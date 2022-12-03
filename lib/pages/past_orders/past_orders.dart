@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/Orders/bloc/order_bloc.dart';
+import 'package:project/pages/Orders/ordersummary.dart';
 
 class PastOrder extends StatelessWidget {
   PastOrder({super.key});
@@ -28,7 +29,22 @@ class PastOrder extends StatelessWidget {
                     for (var x in element.keys)
                       Row(
                         children: [
-                          Text('$x: ${element[x]}'),
+                          Container(child: Column(
+                            children: [
+                              Text('$x: ${element[x]}'),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const OrderSummary(),
+                                  ),
+                                );
+                                },
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                              child: const Text("Ver Detalle"),)
+                              ],
+                            )),
                         ],
                       ),
                     const Divider(

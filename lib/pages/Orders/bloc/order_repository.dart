@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class OrderRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -38,7 +39,8 @@ class OrderRepository {
 
     for (var element in userOrder) {
       Map<String, dynamic> temp = {};
-      if (element['tacos_pastor'] > 0) {
+      temp['Orden cerrada con la fecha'] = element['endDate'].toDate();
+      /*if (element['tacos_pastor'] > 0) {
         temp['tacos_pastor'] = element['tacos_pastor'];
       }
       if (element['quesadillas_maiz'] > 0) {
@@ -68,11 +70,13 @@ class OrderRepository {
       if (element['agua'] > 0) {
         temp['agua'] = element['agua'];
       }
+      */
+            
       if (temp.isNotEmpty) {
         docToSend.add(temp);
       }
     }
-
+    
     return docToSend;
   }
 

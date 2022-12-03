@@ -5,7 +5,7 @@ import 'package:project/pages/Orders/bloc/order_bloc.dart';
 class ActualOrder extends StatelessWidget {
   ActualOrder({super.key});
 
-  late List<Map<String, dynamic>> _userOrder;
+  late List<Map<String, dynamic>> _userOrder = [];
 
   @override
   Widget build(BuildContext context) {
