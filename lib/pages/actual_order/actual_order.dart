@@ -24,7 +24,7 @@ class ActualOrder extends StatelessWidget {
             children: [
               for (var element in _userOrder)
                 GestureDetector(
-                  onTap: () {
+                  onLongPress: () {
                     showDialog(
                       context: context,
                       builder: (context) {
@@ -41,7 +41,7 @@ class ActualOrder extends StatelessWidget {
                                   }
                                 });
                                 BlocProvider.of<OrderBloc>(context).add(
-                                  CloseOrderEvent(id: id),
+                                  CloseOrderEvent(id: id.toString()),
                                 );
                                 Navigator.pop(context);
                               },
@@ -84,10 +84,11 @@ class ActualOrder extends StatelessWidget {
               Text('Ordenes Actuales'),
             ],
           );
+        } else if (state is GetOrderLoadingState) {
+          return const CircularProgressIndicator();
+        } else {
+          return const Text('Aun no tienes Ordenes en proceso');
         }
-        return Column(
-          children: const [Text('Ordenes Actuales')],
-        );
       },
     );
   }

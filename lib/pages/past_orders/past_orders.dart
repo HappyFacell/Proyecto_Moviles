@@ -14,7 +14,7 @@ class PastOrder extends StatelessWidget {
         if (state is GetPastOrderSuccesfullyState) {
           _userOrder = state.userOrder;
         }
-        if(state is OrderCloseSuccesfullyState){
+        if (state is OrderCloseSuccesfullyState) {
           BlocProvider.of<OrderBloc>(context).add(GetPastOrderEvent());
         }
       },
@@ -48,12 +48,11 @@ class PastOrder extends StatelessWidget {
               Text('Ordenes pasadas'),
             ],
           );
+        } else if (state is GetOrderLoadingState) {
+          return const CircularProgressIndicator();
+        } else {
+          return const Text('Aun no tienes Ordenes entregadas');
         }
-        return Column(
-          children: const [
-            Text('Ordenes pasadas'),
-          ],
-        );
       },
     );
   }
