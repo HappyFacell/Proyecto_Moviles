@@ -42,3 +42,5 @@ class GetPastOrderSuccesfullyState extends OrderState {
 class OrderCloseSuccesfullyState extends OrderState {}
 
 class OrderCloseFailedState extends OrderState {}
+
+class GetOrderLoadingState extends OrderState {}
