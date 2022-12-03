@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/Auth/bloc/auth_bloc.dart';
+import 'package:project/pages/Orders/bloc/order_bloc.dart';
 import 'package:project/pages/Orders/order.dart';
 import 'package:project/pages/actual_order/actual_order.dart';
 import 'package:project/pages/details/details.dart';
@@ -27,8 +28,8 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final _pageList = [
-    const ActualOrder(),
-    const PassOrder(),
+    ActualOrder(),
+    PastOrder(),
     const Order(),
     const Detalles()
   ];
@@ -40,11 +41,13 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_pageNameList[_currentpage]),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(_pageNameList[_currentpage]),
+            ),
             IconButton(
               onPressed: () {
-                BlocProvider.of<AuthBloc>(context)
-                              .add(SignOutEvent());
+                BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
               },
               icon: const Icon(Icons.logout),
             )
@@ -65,6 +68,12 @@ class _HomePageState extends State<HomePage> {
               _currentpage = value;
             },
           );
+          if (_currentpage == 0) {
+            BlocProvider.of<OrderBloc>(context).add(GetActualOrderEvent());
+          }
+          else if (_currentpage == 1) {
+            BlocProvider.of<OrderBloc>(context).add(GetPastOrderEvent());
+          }
         },
         selectedItemColor: const Color.fromARGB(255, 139, 137, 136),
         unselectedItemColor: Colors.white,

@@ -47,6 +47,7 @@ dependencies:
   cloud_firestore: ^4.1.0
   flutterfire_ui: ^0.4.3+14
   google_sign_in: ^5.4.2
+  uuid: ^3.0.7
 
 
 dev_dependencies:

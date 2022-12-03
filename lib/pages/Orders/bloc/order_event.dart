@@ -9,4 +9,15 @@ abstract class OrderEvent extends Equatable {
 
 class CreateOrderEvent extends OrderEvent {}
 
-class CloseOrderEvent extends OrderEvent {}
+class CloseOrderEvent extends OrderEvent {
+  final String id;
+
+  const CloseOrderEvent({required this.id});
+  @override
+  List<Object> get props => [id];
+
+}
+
+class GetActualOrderEvent extends OrderEvent {}
+
+class GetPastOrderEvent extends OrderEvent {}

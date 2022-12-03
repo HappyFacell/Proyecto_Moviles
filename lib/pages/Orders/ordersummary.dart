@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/pages/Home/user_home_page.dart';
 import 'package:project/pages/Orders/widgets/orderitemcard.dart';
 import 'package:project/pages/Orders/bloc/order_bloc.dart';
 import 'package:project/pages/Auth/bloc/auth_bloc.dart';
@@ -47,7 +48,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 return ElevatedButton(
                   onPressed: () {
                     print("he presionado el boton");
-                    BlocProvider.of<OrderBloc>(context).add(CloseOrderEvent());
+                    BlocProvider.of<OrderBloc>(context).add(CloseOrderEvent(id:'0'));
                   },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.green),
@@ -55,14 +56,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                 );
               }
               return ElevatedButton(
-                  onPressed: () {
-                    print("he presionado el boton");
-                    BlocProvider.of<OrderBloc>(context).add(CreateOrderEvent());
-                  },
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                  child: const Text("Confirmar orden"),
-                );
+                onPressed: () {
+                  print("he presionado el boton");
+                  BlocProvider.of<OrderBloc>(context).add(CreateOrderEvent());
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                child: const Text("Confirmar orden"),
+              );
             },
           )
         ],
@@ -70,5 +70,3 @@ class _OrderSummaryState extends State<OrderSummary> {
     );
   }
 }
-
-
