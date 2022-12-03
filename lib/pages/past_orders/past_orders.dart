@@ -14,11 +14,12 @@ class PastOrder extends StatelessWidget {
         if (state is GetPastOrderSuccesfullyState) {
           _userOrder = state.userOrder;
         }
+        if(state is OrderCloseSuccesfullyState){
+          BlocProvider.of<OrderBloc>(context).add(GetPastOrderEvent());
+        }
       },
       builder: (context, state) {
         if (state is GetPastOrderSuccesfullyState && _userOrder.isNotEmpty) {
-          print('Estado correcto');
-          print(_userOrder);
           return ListView(
             children: [
               for (var element in _userOrder)

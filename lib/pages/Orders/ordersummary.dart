@@ -48,7 +48,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 return ElevatedButton(
                   onPressed: () {
                     print("he presionado el boton");
-                    BlocProvider.of<OrderBloc>(context).add(CloseOrderEvent());
+                    BlocProvider.of<OrderBloc>(context).add(CloseOrderEvent(id:'0'));
                   },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.green),
