@@ -2,7 +2,7 @@ part of 'order_bloc.dart';
 
 abstract class OrderState extends Equatable {
   const OrderState();
-  
+
   @override
   List<Object> get props => [];
 }
@@ -10,6 +10,8 @@ abstract class OrderState extends Equatable {
 class OrderInitialState extends OrderState {}
 
 class OrderPendingState extends OrderState {}
+
+class CreatingOrderState extends OrderState {}
 
 class OrderCreatedSuccesfullyState extends OrderState {}
 
