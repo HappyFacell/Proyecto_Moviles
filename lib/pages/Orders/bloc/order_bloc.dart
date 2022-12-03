@@ -29,9 +29,12 @@ FutureOr<void> _createOrder(event, emit) async {
 FutureOr<void> _closeOrder(event, emit) async {
   try {
     print("Hola, voy a cerrar la orden");
-    emit(OrderCreatedSuccesfullyState());
+    String temp = event.toString().substring(16);
+    String id = temp.substring(0, 20);
+    OrderRepository().closeOrder(id);
+    emit(OrderCloseSuccesfullyState());
   } catch (e) {
-    emit(OrderCreationFailedState());
+    emit(OrderCloseFailedState());
   }
 }
 

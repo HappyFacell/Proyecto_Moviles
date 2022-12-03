@@ -23,6 +23,7 @@ class OrderRepository {
       'media_orden': 0,
       'refrescos': 2,
       'agua': 3,
+      'orderId': 0,
     });
   }
 
@@ -83,9 +84,17 @@ class OrderRepository {
         .where('isActive', isEqualTo: true)
         .get();
     var userOrder = userCollection.docs.map((element) => element.data());
+    var orderId = userCollection.docs.map((element) => element.id);
+
+    for (var ids in orderId) {
+      await FirebaseFirestore.instance.collection('Orders').doc(ids).update({
+        'orderId': ids,
+      });
+    }
 
     for (var element in userOrder) {
       Map<String, dynamic> temp = {};
+      temp['orderId'] = element['orderId'];
       if (element['tacos_pastor'] > 0) {
         temp['tacos_pastor'] = element['tacos_pastor'];
       }
@@ -122,5 +131,11 @@ class OrderRepository {
     }
 
     return docToSend;
+  }
+
+  Future<void> closeOrder(String id) async {
+    await FirebaseFirestore.instance.collection('Orders').doc(id).update({
+      'isActive': false,
+    });
   }
 }

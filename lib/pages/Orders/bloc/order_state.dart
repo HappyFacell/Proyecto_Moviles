@@ -38,3 +38,7 @@ class GetPastOrderSuccesfullyState extends OrderState {
   @override
   List<Object> get props => [userOrder];
 }
+
+class OrderCloseSuccesfullyState extends OrderState {}
+
+class OrderCloseFailedState extends OrderState {}
