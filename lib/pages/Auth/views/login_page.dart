@@ -19,41 +19,23 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           children: [
             const Padding(
-              padding: EdgeInsets.all(24.0),
+              padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Text(
-                "Log In",
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(24.0),
-              child: const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'User Name',
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(24.0),
-              child: const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Forgot Password',
+                "Tacos el camioncito",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 75, 0, 0),
+              child: Image.asset(
+                'assets/images/pastor-taco.png',
+                width: 250,
+                height: 250,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25.0, 125, 25.0, 0),
               child: ElevatedButton.icon(
                 icon: const FaIcon(
                   FontAwesomeIcons.google,

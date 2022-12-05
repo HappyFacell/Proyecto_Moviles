@@ -24,16 +24,16 @@ class GetPastOrderFailedState extends OrderState {}
 class GetActualOrderFailedState extends OrderState {}
 
 class GetActualOrderSuccesfullyState extends OrderState {
-  final List<Map<String, dynamic>> userOrder;
+  final List<order_lib.Order> userOrders;
 
-  const GetActualOrderSuccesfullyState({required this.userOrder});
+  const GetActualOrderSuccesfullyState({required this.userOrders});
 
   @override
-  List<Object> get props => [userOrder];
+  List<Object> get props => [userOrders];
 }
 
 class GetPastOrderSuccesfullyState extends OrderState {
-  final List<Map<String, dynamic>> userOrder;
+  final List<order_lib.Order> userOrder;
 
   const GetPastOrderSuccesfullyState({required this.userOrder});
 

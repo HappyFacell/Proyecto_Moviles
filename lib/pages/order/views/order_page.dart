@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/pages/Orders/ordersummary.dart';
-import 'package:project/pages/Orders/widgets/itemcard.dart';
+import 'ordersummary_page.dart';
+import 'package:project/pages/order/widgets/itemcard.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});
@@ -33,7 +33,7 @@ class _OrderState extends State<Order> {
             img: "assets/images/agua_horchata.png",
             description: "Combinada de Harina",
             precio: 15,
-          ),          
+          ),
           const ItemCard(
             img: "assets/images/agua_horchata.png",
             description: "Combinada de Maiz",

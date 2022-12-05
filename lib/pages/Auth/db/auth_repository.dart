@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class ReporsitoryAuth {
+class RepositoryAuth {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -38,17 +38,24 @@ class ReporsitoryAuth {
 
   Future<void> _createUserCollectionFirebase(dynamic doc) async {
     var userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(doc.uid).get();
+        await FirebaseFirestore.instance.collection('user').doc(doc.uid).get();
 
     if (!userDoc.exists) {
-      await FirebaseFirestore.instance.collection('users').doc(doc.uid).set({
-        'uid': doc.uid,
-        'is_taker':false,
+      await FirebaseFirestore.instance.collection('user').doc(doc.uid).set({
+        'id': doc.uid,
+        'isTaker': false,
         'name': doc.displayName,
       });
     } else {
       print('user already exists');
       return;
     }
+  }
+
+  Future<bool> isTaker(String uid) async {
+    var userDoc =
+        await FirebaseFirestore.instance.collection('user').doc(uid).get();
+
+    return userDoc.data()!['isTaker'];
   }
 }

@@ -4,11 +4,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/Auth/bloc/auth_bloc.dart';
-import 'package:project/pages/Orders/bloc/order_bloc.dart';
-import 'package:project/pages/Orders/order.dart';
-import 'package:project/pages/actual_order/actual_order.dart';
-import 'package:project/pages/details/details.dart';
-import 'package:project/pages/past_orders/past_orders.dart';
+import 'package:project/pages/order/bloc/order_bloc.dart';
+import 'package:project/pages/order/views/order_page.dart';
+import '../order/widgets/actual_orders_list.dart';
+import 'package:project/pages/details/details_page.dart';
+import 'package:project/pages/order/widgets/past_orders_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
   final _pageList = [
     ActualOrder(),
     PastOrder(),
-    const Order(),
-    const Detalles()
+    Order(),
+    Detalles(),
   ];
 
   @override
@@ -70,8 +70,7 @@ class _HomePageState extends State<HomePage> {
           );
           if (_currentpage == 0) {
             BlocProvider.of<OrderBloc>(context).add(GetActualOrderEvent());
-          }
-          else if (_currentpage == 1) {
+          } else if (_currentpage == 1) {
             BlocProvider.of<OrderBloc>(context).add(GetPastOrderEvent());
           }
         },
