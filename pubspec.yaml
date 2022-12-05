@@ -48,7 +48,8 @@ dependencies:
   flutterfire_ui: ^0.4.3+14
   google_sign_in: ^5.4.2
   uuid: ^3.0.7
-  qr_flutter: ^4.0.0
+  google_maps_flutter: ^2.2.1
+  qr_flutter:
   qr_code_scanner: ^1.0.1
 
 

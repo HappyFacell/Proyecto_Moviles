@@ -25,7 +25,7 @@ class Item {
       id: item['id'],
       name: item['name'],
       unit: item['unit'],
-      price: item['price'],
+      price: double.parse(item['price'].toString()),
     );
   }
 }

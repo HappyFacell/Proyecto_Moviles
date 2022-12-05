@@ -46,3 +46,15 @@ class OrderCloseSuccesfullyState extends OrderState {}
 class OrderCloseFailedState extends OrderState {}
 
 class GetOrderLoadingState extends OrderState {}
+
+class GetOrdersLoadingState extends OrderState {}
+
+class GetOrdersSuccessState extends OrderState {
+  final List<order_lib.Order> userOrders;
+  const GetOrdersSuccessState({required this.userOrders});
+
+  @override
+  List<Object> get props => [userOrders];
+}
+
+class GetOrdersFailureState extends OrderState {}

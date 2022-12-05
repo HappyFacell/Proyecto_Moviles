@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
       home: BlocConsumer<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthSuccessState || state is TakerAuthSuccessState) {
-            BlocProvider.of<OrderBloc>(context).add(GetActualOrderEvent());
+            BlocProvider.of<OrderBloc>(context)
+                .add(const GetOrdersEvent(isHistory: false));
             return const HomePage();
           } else if (state is UnAuthState ||
               state is AuthErrorState ||

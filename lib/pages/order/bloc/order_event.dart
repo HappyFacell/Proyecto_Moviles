@@ -15,9 +15,12 @@ class CloseOrderEvent extends OrderEvent {
   const CloseOrderEvent({required this.id});
   @override
   List<Object> get props => [id];
-
 }
 
-class GetActualOrderEvent extends OrderEvent {}
+class GetOrdersEvent extends OrderEvent {
+  final bool isHistory;
 
-class GetPastOrderEvent extends OrderEvent {}
+  const GetOrdersEvent({required this.isHistory});
+  @override
+  List<Object> get props => [isHistory];
+}

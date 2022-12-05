@@ -12,12 +12,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderBloc() : super(OrderInitialState()) {
     on<CreateOrderEvent>(_createOrder);
     on<CloseOrderEvent>(_closeOrder);
-    on<GetActualOrderEvent>(_getActualOrder);
-    on<GetPastOrderEvent>(_getPastOrder);
+    on<GetOrdersEvent>(_getOrders);
   }
 }
 
-FutureOr<void> _createOrder(event, emit) async {
+FutureOr<void> _createOrder(CreateOrderEvent event, emit) async {
   try {
     print("Hola, voy a crear la orden");
     OrderRepository().createNewOrder();
@@ -27,36 +26,31 @@ FutureOr<void> _createOrder(event, emit) async {
   }
 }
 
-FutureOr<void> _closeOrder(event, emit) async {
+FutureOr<void> _closeOrder(CloseOrderEvent event, emit) async {
   try {
     print("Hola, voy a cerrar la orden");
     String temp = event.toString().substring(16);
     String id = temp.substring(0, 20);
-    OrderRepository().closeOrder(id);
+    OrderRepository().closeOrder(event.id);
     emit(OrderCloseSuccesfullyState());
   } catch (e) {
     emit(OrderCloseFailedState());
   }
 }
 
-FutureOr<void> _getActualOrder(event, emit) async {
+FutureOr<void> _getOrders(GetOrdersEvent event, emit) async {
   try {
     print("Hola voy a obtener la orden");
-    List<order_lib.Order> orders = await OrderRepository().getActiveOrders();
-    print(orders);
-    emit(GetActualOrderSuccesfullyState(userOrders: orders));
-  } catch (e) {
-    emit(GetActualOrderFailedState());
-  }
-}
+    var orders;
+    if (event.isHistory) {
+      orders = await OrderRepository().getOrderHistory();
+    } else {
+      orders = await OrderRepository().getActiveOrders();
+    }
 
-FutureOr<void> _getPastOrder(event, emit) async {
-  try {
-    print("Hola voy a obtener la orden");
-    var order = await OrderRepository().getOrderHistory();
     // print(order);
-    emit(GetPastOrderSuccesfullyState(userOrder: order));
+    emit(GetOrdersSuccessState(userOrders: orders));
   } catch (e) {
-    emit(GetPastOrderFailedState());
+    emit(GetOrdersFailureState());
   }
 }

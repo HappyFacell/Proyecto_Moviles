@@ -31,6 +31,10 @@ class _QRViewExampleState extends State<QRViewExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Escarner de QR'),
+        backgroundColor: const Color.fromARGB(255, 164, 59, 27),
+      ),
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -60,8 +64,8 @@ class _QRViewExampleState extends State<QRViewExample> {
                             future: controller?.getFlashStatus(),
                             builder: (context, snapshot) {
                               return snapshot.data == true
-                                    ? const Icon(Icons.flash_on)
-                                    : const Icon(Icons.flash_off);
+                                  ? const Icon(Icons.flash_on)
+                                  : const Icon(Icons.flash_off);
                             },
                           ),
                         ),

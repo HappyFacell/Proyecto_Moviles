@@ -7,9 +7,8 @@ import 'package:project/pages/Home/qr_scan.dart';
 import 'package:project/pages/auth/bloc/auth_bloc.dart';
 import 'package:project/pages/order/bloc/order_bloc.dart';
 import 'package:project/pages/order/views/order_page.dart';
-import '../order/widgets/actual_orders_list.dart';
+import 'package:project/pages/order/widgets/order_list.dart';
 import 'package:project/pages/details/details_page.dart';
-import 'package:project/pages/order/widgets/past_orders_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,8 +28,12 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final _pageList = [
-    ActualOrder(),
-    PastOrder(),
+    OrderList(
+      isHistory: false,
+    ),
+    OrderList(
+      isHistory: true,
+    ),
     Order(),
     Detalles(),
   ];
@@ -83,9 +86,11 @@ class _HomePageState extends State<HomePage> {
             },
           );
           if (_currentpage == 0) {
-            BlocProvider.of<OrderBloc>(context).add(GetActualOrderEvent());
+            BlocProvider.of<OrderBloc>(context)
+                .add(const GetOrdersEvent(isHistory: false));
           } else if (_currentpage == 1) {
-            BlocProvider.of<OrderBloc>(context).add(GetPastOrderEvent());
+            BlocProvider.of<OrderBloc>(context)
+                .add(const GetOrdersEvent(isHistory: true));
           }
         },
         selectedItemColor: const Color.fromARGB(255, 139, 137, 136),

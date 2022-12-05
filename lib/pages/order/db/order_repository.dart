@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project/pages/auth/db/auth_repository.dart';
+import 'package:project/pages/order/classes/item.dart';
 import '../classes/order.dart' as order_lib;
 
 class OrderRepository {
@@ -90,7 +91,7 @@ class OrderRepository {
     // Get all order details
     QuerySnapshot userCollection = await FirebaseFirestore.instance
         .collection("orderDetail")
-        .where('order', isEqualTo: order.id)
+        .where('orderId', isEqualTo: order.id)
         .get();
 
     List<order_lib.OrderDetail> orderDetails = [];
@@ -128,6 +129,25 @@ class OrderRepository {
     );
 
     return detail;
+  }
+
+  FutureOr<Item> getItem(String id) async {
+    DocumentSnapshot doc =
+        await FirebaseFirestore.instance.collection('item').doc(id).get();
+    print(doc.data());
+    Item item = Item.fromMap(doc.data() as Map<String, dynamic>);
+    item.id = doc.id;
+    return item;
+  }
+
+  FutureOr<double> getOrderTotal(order_lib.Order order) async {
+    List<order_lib.OrderDetail> details = await getOrderDetails(order);
+    double total = 0;
+    for (var detail in details) {
+      Item currentItem = await getItem(detail.itemId);
+      total += detail.amount * currentItem.price;
+    }
+    return total;
   }
 
   Future<void> closeOrder(String id) async {
