@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/pages/Orders/bloc/order_bloc.dart';
+import 'package:project/pages/order/bloc/order_bloc.dart';
+import '../classes/order.dart' as order_lib;
 
 class ActualOrder extends StatelessWidget {
   ActualOrder({super.key});
 
-  late List<Map<String, dynamic>> _userOrder = [];
+  late List<order_lib.Order> _userOrder;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         if (state is GetActualOrderSuccesfullyState) {
-          _userOrder = state.userOrder;
+          _userOrder = state.userOrders;
         }
         if (state is OrderCloseSuccesfullyState) {
           BlocProvider.of<OrderBloc>(context).add(GetActualOrderEvent());
@@ -35,7 +36,7 @@ class ActualOrder extends StatelessWidget {
                               child: const Text('Si'),
                               onPressed: () {
                                 var id;
-                                element.forEach((key, value) {
+                                element.toMap().forEach((key, value) {
                                   if (key == 'orderId') {
                                     id = value;
                                   }
@@ -59,11 +60,11 @@ class ActualOrder extends StatelessWidget {
                   },
                   child: Column(
                     children: [
-                      for (var x in element.keys)
+                      for (var x in element.toMap().keys)
                         if (x != 'orderId')
                           Row(
                             children: [
-                              Text('$x: ${element[x]}'),
+                              Text('$x: ${element.toMap()[x]}'),
                             ],
                           ),
                       const Divider(
@@ -87,7 +88,10 @@ class ActualOrder extends StatelessWidget {
         } else if (state is GetOrderLoadingState) {
           return const CircularProgressIndicator();
         } else {
-          return const Text('Aun no tienes Ordenes en proceso');
+          return Container(
+            alignment: Alignment.center,
+            child: const Text('Aun no tienes Ordenes en proceso'),
+          );
         }
       },
     );

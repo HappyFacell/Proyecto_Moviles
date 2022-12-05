@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:project/pages/Orders/bloc/order_repository.dart';
+import 'package:project/pages/order/classes/order.dart' as order_lib;
+import 'package:project/pages/order/db/order_repository.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';
@@ -19,7 +20,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 FutureOr<void> _createOrder(event, emit) async {
   try {
     print("Hola, voy a crear la orden");
-    OrderRepository().createUserOrderCollectionFirebase();
+    OrderRepository().createNewOrder();
     emit(OrderCreatedSuccesfullyState());
   } catch (e) {
     emit(OrderCreationFailedState());
@@ -41,9 +42,9 @@ FutureOr<void> _closeOrder(event, emit) async {
 FutureOr<void> _getActualOrder(event, emit) async {
   try {
     print("Hola voy a obtener la orden");
-    var order = await OrderRepository().getActualOder();
-    // print(order);
-    emit(GetActualOrderSuccesfullyState(userOrder: order));
+    List<order_lib.Order> orders = await OrderRepository().getActiveOrders();
+    print(orders);
+    emit(GetActualOrderSuccesfullyState(userOrders: orders));
   } catch (e) {
     emit(GetActualOrderFailedState());
   }
@@ -52,7 +53,7 @@ FutureOr<void> _getActualOrder(event, emit) async {
 FutureOr<void> _getPastOrder(event, emit) async {
   try {
     print("Hola voy a obtener la orden");
-    var order = await OrderRepository().getpastOder();
+    var order = await OrderRepository().getOrderHistory();
     // print(order);
     emit(GetPastOrderSuccesfullyState(userOrder: order));
   } catch (e) {

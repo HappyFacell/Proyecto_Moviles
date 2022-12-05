@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/pages/Auth/Auth_repository.dart';
+
+import '../db/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final ReporsitoryAuth _userAuthRepository = ReporsitoryAuth();
+  final RepositoryAuth _userAuthRepository = RepositoryAuth();
   AuthBloc() : super(AuthInitial()) {
     on<VerifyAuthEvent>(_authVerification);
     on<SignOutEvent>(_signOut);

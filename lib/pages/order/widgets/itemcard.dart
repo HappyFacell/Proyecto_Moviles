@@ -53,7 +53,7 @@ class _ItemCardState extends State<ItemCard> {
                   size: 30,
                 ),
               ),
-              Text('${quantity}' '. '),
+              Text('$quantity'),
               IconButton(
                 onPressed: () {
                   setState(() {

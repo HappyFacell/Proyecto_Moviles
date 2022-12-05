@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/pages/Orders/bloc/order_bloc.dart';
-import 'package:project/pages/Orders/ordersummary.dart';
+import 'package:project/pages/order/bloc/order_bloc.dart';
+import 'package:project/pages/order/views/ordersummary_page.dart';
+import '../classes/order.dart' as order_lib;
 
 class PastOrder extends StatelessWidget {
   PastOrder({super.key});
 
-  late List<Map<String, dynamic>> _userOrder;
+  late List<order_lib.Order> _userOrder;
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +27,29 @@ class PastOrder extends StatelessWidget {
               for (var element in _userOrder)
                 Column(
                   children: [
-                    for (var x in element.keys)
+                    for (var x in element.toMap().keys)
                       Row(
                         children: [
-                          Container(child: Column(
+                          Container(
+                              child: Column(
                             children: [
-                              Text('$x: ${element[x]}'),
+                              Text('$x: ${element.toMap()[x]}'),
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const OrderSummary(),
-                                  ),
-                                );
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const OrderSummary(),
+                                    ),
+                                  );
                                 },
-                              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                              child: const Text("Ver Detalle"),)
-                              ],
-                            )),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green),
+                                child: const Text("Ver Detalle"),
+                              )
+                            ],
+                          )),
                         ],
                       ),
                     const Divider(
