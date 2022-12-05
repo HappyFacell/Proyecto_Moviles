@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project/pages/Auth/db/auth_repository.dart';
+import 'package:project/pages/auth/db/auth_repository.dart';
 import '../classes/order.dart' as order_lib;
 
 class OrderRepository {
@@ -34,7 +34,7 @@ class OrderRepository {
   Future<List<order_lib.Order>> getOrderHistory() async {
     var currentUserUid = _auth.currentUser!.uid;
     final userCollection = await FirebaseFirestore.instance
-        .collection("Orders")
+        .collection("order")
         .where("userId", isEqualTo: currentUserUid)
         .where('isActive', isEqualTo: false)
         .orderBy('closureDate')

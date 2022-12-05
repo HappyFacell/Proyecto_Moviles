@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Order {
   String id;
   bool isActive;
@@ -10,7 +12,7 @@ class Order {
     required this.isActive,
     required this.userId,
     required this.creationDate,
-    required this.closureDate,
+    this.closureDate,
   });
 
   Map<String, dynamic> toMap() {
@@ -18,8 +20,9 @@ class Order {
       'id': id,
       'isActive': isActive,
       'userId': userId,
-      'creationDate': creationDate,
-      'closureDate': closureDate,
+      'creationDate': Timestamp.fromDate(creationDate),
+      'closureDate':
+          closureDate == null ? null : Timestamp.fromDate(closureDate!),
     };
   }
 
@@ -28,8 +31,9 @@ class Order {
       id: order['id'],
       isActive: order['isActive'],
       userId: order['userId'],
-      creationDate: order['creationDate'],
-      closureDate: order['closureDate'],
+      creationDate: DateTime.fromMicrosecondsSinceEpoch(
+          (order['creationDate'] as Timestamp).microsecondsSinceEpoch),
+      closureDate: DateTime.tryParse(order['closureDate'].toString()),
     );
   }
 }
