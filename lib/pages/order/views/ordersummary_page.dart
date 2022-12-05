@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/pages/order/widgets/orderitemcard.dart';
 import 'package:project/pages/order/bloc/order_bloc.dart';
-import 'package:project/pages/Auth/bloc/auth_bloc.dart';
+
+import '../../auth/bloc/auth_bloc.dart';
 
 class OrderSummary extends StatefulWidget {
   const OrderSummary({super.key});

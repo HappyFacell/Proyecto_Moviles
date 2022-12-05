@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/pages/Home/qr_scan.dart';
 import 'package:project/pages/auth/bloc/auth_bloc.dart';
 import 'package:project/pages/order/bloc/order_bloc.dart';
 import 'package:project/pages/order/views/order_page.dart';
@@ -39,11 +40,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(_pageNameList[_currentpage]),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(175, 0, 15, 0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QRViewExample(),
+                  ),
+                );
+                },
+                icon: const Icon(Icons.qr_code),
+              ),
             ),
             IconButton(
               onPressed: () {
