@@ -1,15 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/pages/order/classes/order.dart';
 
 import '../bloc/order_bloc.dart';
+import '../classes/item.dart';
+import '../db/order_repository.dart';
 
 class OrderItemCard extends StatefulWidget {
-  final String description;
-  final double cost;
+  final OrderDetail detail;
   const OrderItemCard({
     super.key,
-    this.description = "Taco de pastor",
-    this.cost = 10,
+    required this.detail,
   });
 
   @override
@@ -30,11 +33,20 @@ class _OrderItemCardState extends State<OrderItemCard> {
             children: [
               Row(
                 children: [
-                  Text(
-                    widget.description,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
+                  FutureBuilder<String>(
+                    future: getOrderItemName(widget.detail) as Future<String>?,
+                    initialData: 'Elemento',
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot snapshot,
+                    ) {
+                      return Text(
+                        "${snapshot.data}",
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -42,9 +54,20 @@ class _OrderItemCardState extends State<OrderItemCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Text("Total:"),
-                  const Text("5"),
+                  Text("${widget.detail.amount}"),
                   const Text("Costo:"),
-                  Text("${widget.cost}")
+                  FutureBuilder<double>(
+                    future: getOrderItemTotalPrice(widget.detail)
+                        as Future<double>?,
+                    initialData: 0,
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot snapshot,
+                    ) {
+                      return Text("${snapshot.data}");
+                    },
+                  ),
+                  Text("${widget.detail.itemId}")
                 ],
               ),
             ],
@@ -53,4 +76,14 @@ class _OrderItemCardState extends State<OrderItemCard> {
       },
     );
   }
+}
+
+FutureOr<double> getOrderItemTotalPrice(OrderDetail detail) async {
+  Item item = await OrderRepository().getItem(detail.itemId);
+  return detail.amount * item.price;
+}
+
+FutureOr<String> getOrderItemName(OrderDetail detail) async {
+  Item item = await OrderRepository().getItem(detail.itemId);
+  return item.name;
 }

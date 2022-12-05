@@ -15,31 +15,17 @@ class CreatingOrderState extends OrderState {}
 
 class OrderCreatedSuccesfullyState extends OrderState {}
 
+class OrderHeaderCreatedSuccesfullyState extends OrderState {
+  final order_lib.Order newOrder;
+  const OrderHeaderCreatedSuccesfullyState({required this.newOrder});
+
+  @override
+  List<Object> get props => [newOrder];
+}
+
 class OrderFinishedState extends OrderState {}
 
 class OrderCreationFailedState extends OrderState {}
-
-class GetPastOrderFailedState extends OrderState {}
-
-class GetActualOrderFailedState extends OrderState {}
-
-class GetActualOrderSuccesfullyState extends OrderState {
-  final List<order_lib.Order> userOrders;
-
-  const GetActualOrderSuccesfullyState({required this.userOrders});
-
-  @override
-  List<Object> get props => [userOrders];
-}
-
-class GetPastOrderSuccesfullyState extends OrderState {
-  final List<order_lib.Order> userOrder;
-
-  const GetPastOrderSuccesfullyState({required this.userOrder});
-
-  @override
-  List<Object> get props => [userOrder];
-}
 
 class OrderCloseSuccesfullyState extends OrderState {}
 

@@ -32,10 +32,17 @@ class _OrderCardState extends State<OrderCard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const Text("Total:"),
-              const Text("5"),
+              FutureBuilder<int>(
+                future: OrderRepository().getOrderTotalQuantity(widget.order)
+                    as Future<int>?,
+                initialData: 0,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return Text("${snapshot.data}");
+                },
+              ),
               const Text("Costo:"),
               FutureBuilder<double>(
-                future: OrderRepository().getOrderTotal(widget.order)
+                future: OrderRepository().getOrderTotalPrice(widget.order)
                     as Future<double>?,
                 initialData: 0,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {

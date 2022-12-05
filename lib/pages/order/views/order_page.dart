@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/pages/order/classes/item.dart';
+import 'package:project/pages/order/db/order_repository.dart';
+import '../../auth/bloc/auth_bloc.dart';
+import '../bloc/order_bloc.dart';
 import 'ordersummary_page.dart';
 import 'package:project/pages/order/widgets/itemcard.dart';
 
@@ -13,51 +18,48 @@ class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          const ItemCard(
-            img: "assets/images/taco_pastor.jpg",
-            description: "Taco de pastor",
-          ),
-          const ItemCard(
-            img: "assets/images/orden_pastor.jpg",
-            description: "Orden de pastor",
-            precio: 110,
-          ),
-          const ItemCard(
-            img: "assets/images/agua_horchata.png",
-            description: "Agua de horchata",
-            precio: 15,
-          ),
-          const ItemCard(
-            img: "assets/images/agua_horchata.png",
-            description: "Combinada de Harina",
-            precio: 15,
-          ),
-          const ItemCard(
-            img: "assets/images/agua_horchata.png",
-            description: "Combinada de Maiz",
-            precio: 15,
-          ),
-          const ItemCard(
-            img: "assets/images/agua_horchata.png",
-            description: "Refresco",
-            precio: 15,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const OrderSummary(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+      body: FutureBuilder<List<Item>>(
+        future: OrderRepository().getAllItems() as Future<List<Item>>?,
+        initialData: [],
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: (snapshot.data as List<Item>).length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ItemCard(
+                      item: snapshot.data[index],
+                    );
+                  },
+                ),
               ),
-              child: const Text("Crear orden"))
-        ],
+              BlocListener<OrderBloc, OrderState>(
+                listener: (context, state) {
+                  if (state is OrderHeaderCreatedSuccesfullyState) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderSummary(
+                          actualOrder: state.newOrder,
+                        ),
+                      ),
+                    );
+                  }
+                },
+                child: ElevatedButton(
+                  onPressed: () {
+                    print("he presionado el boton");
+                    BlocProvider.of<OrderBloc>(context).add(CreateOrderEvent());
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text("Confirmar pago"),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }

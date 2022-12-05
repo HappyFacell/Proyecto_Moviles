@@ -13,11 +13,11 @@ class Detalles extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
         const Image(
-            image: AssetImage("assets/images/agua_horchata.png"),
+            image: AssetImage("assets/images/camioncito.jpg"),
             width: 391,
             height: 300),
         const Text(
-          "Fundados en Enero de 2011, contamos con más de 10 años de experiencia con deliciosos tacos preparados por el mismisimo pornoTaker",
+          "Fundados en Enero de 2011, contamos con más de 10 años de experiencia con deliciosos tacos preparados por el mismisimo Taquero de Sahuayo",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontWeight: FontWeight.w400,
@@ -28,7 +28,7 @@ class Detalles extends StatelessWidget {
           margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
           alignment: Alignment.center,
           child: QrImage(
-            data: "Tacosalpastorchingones",
+            data: "https://drive.google.com/file/d/12WX_uuQNZoBiUKvEARFW4fvo3OHHTlOn/view?usp=sharing",
             size: 200,
           ),
         )

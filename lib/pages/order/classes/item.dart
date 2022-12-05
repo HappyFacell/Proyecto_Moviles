@@ -1,6 +1,7 @@
 class Item {
   String id;
   String name;
+  String img;
   String unit;
   double price;
 
@@ -9,6 +10,7 @@ class Item {
     required this.name,
     required this.unit,
     required this.price,
+    required this.img,
   });
 
   Map<String, dynamic> toMap() {
@@ -17,6 +19,7 @@ class Item {
       'name': name,
       'unit': unit,
       'price': price,
+      'img': img,
     };
   }
 
@@ -26,6 +29,7 @@ class Item {
       name: item['name'],
       unit: item['unit'],
       price: double.parse(item['price'].toString()),
+      img: item['img'],
     );
   }
 }

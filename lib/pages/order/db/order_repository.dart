@@ -23,6 +23,7 @@ class OrderRepository {
     var doc = await FirebaseFirestore.instance
         .collection('order')
         .add(newOrder.toMap());
+    newOrder.id = doc.id;
     await FirebaseFirestore.instance.collection('order').doc(doc.id).update(
       {
         'id': doc.id,
@@ -118,7 +119,7 @@ class OrderRepository {
     var doc = await FirebaseFirestore.instance
         .collection("orderDetail")
         .add(detail.toMap());
-
+    detail.id = doc.id;
     await FirebaseFirestore.instance
         .collection('orderDetail')
         .doc(doc.id)
@@ -140,7 +141,23 @@ class OrderRepository {
     return item;
   }
 
-  FutureOr<double> getOrderTotal(order_lib.Order order) async {
+  FutureOr<List<Item>> getAllItems() async {
+    QuerySnapshot<Map<String, dynamic>> itemCollection =
+        await FirebaseFirestore.instance.collection('item').get();
+
+    List<Item> items = [];
+
+    // Convert data to Orders
+    for (var itemMap in itemCollection.docs) {
+      Item tempItem = Item.fromMap(itemMap.data());
+      tempItem.id = itemMap.id;
+      items.add(tempItem);
+    }
+
+    return items;
+  }
+
+  FutureOr<double> getOrderTotalPrice(order_lib.Order order) async {
     List<order_lib.OrderDetail> details = await getOrderDetails(order);
     double total = 0;
     for (var detail in details) {
@@ -150,9 +167,21 @@ class OrderRepository {
     return total;
   }
 
+  FutureOr<int> getOrderTotalQuantity(order_lib.Order order) async {
+    List<order_lib.OrderDetail> details = await getOrderDetails(order);
+    int total = 0;
+    for (var detail in details) {
+      Item currentItem = await getItem(detail.itemId);
+      total += detail.amount;
+    }
+    return total;
+  }
+
   Future<void> closeOrder(String id) async {
     await FirebaseFirestore.instance.collection('order').doc(id).update({
       'isActive': false,
+      'closureDate': Timestamp.fromMicrosecondsSinceEpoch(
+          DateTime.now().microsecondsSinceEpoch)
     });
   }
 }

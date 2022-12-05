@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/pages/order/classes/order.dart';
+import 'package:project/pages/order/db/order_repository.dart';
+
+import '../bloc/order_bloc.dart';
+import '../classes/item.dart';
 
 class ItemCard extends StatefulWidget {
-  final String img;
-  final String description;
-  final num precio;
-  const ItemCard(
-      {super.key,
-      this.img = "assets/images/taco_pastor.jpg",
-      this.description = "Taco de pastor",
-      this.precio = 10});
+  final Item item;
+  const ItemCard({
+    super.key,
+    required this.item,
+  });
 
   @override
   State<ItemCard> createState() => _ItemCardState();
@@ -18,56 +21,72 @@ class _ItemCardState extends State<ItemCard> {
   int quantity = 0;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image(
-            image: AssetImage(widget.img),
-          ),
-          Text(
-            widget.description,
-            style: const TextStyle(
-              fontSize: 20,
+    return BlocListener<OrderBloc, OrderState>(
+      listener: (context, state) {
+        if (state is OrderHeaderCreatedSuccesfullyState && quantity > 0) {
+          OrderDetail newOrderDetail = OrderDetail(
+            amount: quantity,
+            id: '',
+            itemId: widget.item.id,
+            orderId: state.newOrder.id,
+          );
+          OrderRepository().addOrderDetail(
+            state.newOrder,
+            newOrderDetail,
+          );
+        }
+      },
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image(
+              image: AssetImage(widget.item.img),
             ),
-          ),
-          Text(
-            'Precio: \$${widget.precio}',
-            style: const TextStyle(
-              fontSize: 20,
+            Text(
+              widget.item.name,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    if (quantity > 0) {
-                      quantity--;
-                    }
-                  });
-                },
-                icon: const Icon(
-                  Icons.keyboard_arrow_down,
-                  size: 30,
-                ),
+            Text(
+              'Precio: \$${widget.item.price}',
+              style: const TextStyle(
+                fontSize: 20,
               ),
-              Text('$quantity'),
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    quantity++;
-                  });
-                },
-                icon: const Icon(
-                  Icons.keyboard_arrow_up,
-                  size: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (quantity > 0) {
+                        quantity--;
+                      }
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.keyboard_arrow_down,
+                    size: 30,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                Text('$quantity'),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      quantity++;
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.keyboard_arrow_up,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

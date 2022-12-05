@@ -19,8 +19,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 FutureOr<void> _createOrder(CreateOrderEvent event, emit) async {
   try {
     print("Hola, voy a crear la orden");
-    OrderRepository().createNewOrder();
-    emit(OrderCreatedSuccesfullyState());
+    order_lib.Order neworder = await OrderRepository().createNewOrder();
+    emit(OrderHeaderCreatedSuccesfullyState(newOrder: neworder));
   } catch (e) {
     emit(OrderCreationFailedState());
   }
@@ -29,8 +29,6 @@ FutureOr<void> _createOrder(CreateOrderEvent event, emit) async {
 FutureOr<void> _closeOrder(CloseOrderEvent event, emit) async {
   try {
     print("Hola, voy a cerrar la orden");
-    String temp = event.toString().substring(16);
-    String id = temp.substring(0, 20);
     OrderRepository().closeOrder(event.id);
     emit(OrderCloseSuccesfullyState());
   } catch (e) {
