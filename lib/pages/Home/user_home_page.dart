@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/pages/Auth/bloc/auth_bloc.dart';
+import 'package:project/pages/auth/bloc/auth_bloc.dart';
 import 'package:project/pages/order/bloc/order_bloc.dart';
 import 'package:project/pages/order/views/order_page.dart';
 import '../order/widgets/actual_orders_list.dart';
@@ -21,10 +21,10 @@ class _HomePageState extends State<HomePage> {
   int _currentpage = 0;
 
   final _pageNameList = [
-    "Orden actual",
-    "Ordenes pasadas",
-    "Personalizar orden actual",
-    "Detalle de tienda"
+    "Actuales",
+    "Historial",
+    "Editar",
+    "Detalle",
   ];
 
   final _pageList = [
